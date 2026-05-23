@@ -1,0 +1,146 @@
+import { useEffect, useState } from 'react';
+import { X, MapPin, Calendar, Camera, User, Clock } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext.jsx';
+import { formatFecha, formatBytes } from '../../utils/format.js';
+
+/**
+ * Modal de detalle. Muestra el archivo grande + su metadata.
+ * Moderadores y dueños pueden reasignar la etapa desde acá.
+ */
+export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
+  const { usuario, tienePermiso } = useAuth();
+  const [etapaSel, setEtapaSel] = useState(archivo?.etapa_id || '');
+
+  // Cerrar con Escape
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && onCerrar();
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onCerrar]);
+
+  if (!archivo) return null;
+
+  const esDueno = archivo.usuario_id === usuario?.id;
+  const puedeEditar = esDueno || tienePermiso('archivos.editar_todos');
+  const meta = archivo.metadata || {};
+
+  const guardarEtapa = () => {
+    const nuevaEtapa = etapaSel === '' ? null : Number(etapaSel);
+    onReasignarEtapa(archivo, nuevaEtapa);
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-tinta/70 p-4 backdrop-blur-sm"
+      onClick={onCerrar}
+    >
+      <div
+        className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-crema shadow-2xl md:flex-row"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Media */}
+        <div className="flex flex-1 items-center justify-center bg-tinta/95 p-2">
+          {archivo.tipo === 'imagen' ? (
+            <img
+              src={archivo.url}
+              alt={archivo.nombre}
+              className="max-h-[80vh] w-auto object-contain"
+            />
+          ) : (
+            <video
+              src={archivo.url}
+              controls
+              autoPlay
+              className="max-h-[80vh] w-full"
+            />
+          )}
+        </div>
+
+        {/* Panel de info */}
+        <div className="w-full overflow-y-auto p-6 md:w-80">
+          <div className="mb-4 flex items-start justify-between">
+            <h3 className="font-display text-2xl text-vino">Detalle</h3>
+            <button
+              onClick={onCerrar}
+              className="rounded-full p-1.5 text-tinta/50 transition hover:bg-arena hover:text-vino"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+
+          <p className="mb-4 break-words font-body text-sm text-tinta">{archivo.nombre}</p>
+
+          <dl className="space-y-3 font-body text-sm">
+            <Info icon={User} label="Subido por" valor={archivo.usuario_nombre} />
+            <Info
+              icon={Calendar}
+              label="Tomada"
+              valor={archivo.tomada_en ? formatFecha(archivo.tomada_en) : 'Sin metadata'}
+            />
+            <Info icon={Clock} label="Subida" valor={formatFecha(archivo.created_at)} />
+            {meta.camara && <Info icon={Camera} label="Cámara" valor={meta.camara} />}
+            {meta.gps && (
+              <Info
+                icon={MapPin}
+                label="Ubicación"
+                valor={
+                  <a
+                    href={`https://maps.google.com/?q=${meta.gps.lat},${meta.gps.lng}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-terracota hover:underline"
+                  >
+                    Ver en mapa
+                  </a>
+                }
+              />
+            )}
+            <Info label="Tamaño" valor={formatBytes(archivo.tamano_bytes)} />
+            {(meta.ancho && meta.alto) && (
+              <Info label="Dimensiones" valor={`${meta.ancho} × ${meta.alto}`} />
+            )}
+            {meta.duracion_seg && (
+              <Info label="Duración" valor={`${Math.round(meta.duracion_seg)}s`} />
+            )}
+          </dl>
+
+          {/* Reasignar etapa */}
+          {puedeEditar && (
+            <div className="mt-6 border-t border-champagne/60 pt-4">
+              <label className="label-base">Etapa</label>
+              <div className="flex gap-2">
+                <select
+                  value={etapaSel}
+                  onChange={(e) => setEtapaSel(e.target.value)}
+                  className="flex-1 rounded-lg border border-champagne bg-white/60 px-3 py-2 font-body text-sm outline-none focus:border-terracota"
+                >
+                  <option value="">Sin etapa</option>
+                  {etapas.map((et) => (
+                    <option key={et.id} value={et.id}>
+                      {et.nombre}
+                    </option>
+                  ))}
+                </select>
+                <button onClick={guardarEtapa} className="btn-primary px-4 py-2 text-xs">
+                  Guardar
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Info({ icon: Icon, label, valor }) {
+  return (
+    <div className="flex items-start justify-between gap-3">
+      <dt className="flex items-center gap-1.5 text-tinta/50">
+        {Icon && <Icon className="h-3.5 w-3.5" />}
+        {label}
+      </dt>
+      <dd className="text-right font-medium text-tinta">{valor}</dd>
+    </div>
+  );
+}

@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================================
+   ESTILO BASE — INVITACIÓN JANE & GUILLE
+================================ */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #4a2f2a;
+  background: #f7efe7;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --crema: #f7efe7;
+  --marfil: #fffaf4;
+  --arena: #ead8c8;
+  --champagne: #d8bfa8;
+  --terracota: #b8735f;
+  --vino: #6f1e34;
+  --rosa: #d9a6a1;
+  --tinta: #4a2f2a;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--tinta);
+  background:
+    radial-gradient(circle at top left, rgba(216, 191, 168, 0.45), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(111, 30, 52, 0.16), transparent 38%),
+    linear-gradient(180deg, #fffaf4 0%, #f7efe7 48%, #ead8c8 100%);
+}
+
+/* ================================
+   TIPOGRAFÍA
+================================ */
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  color: var(--vino);
+  letter-spacing: 0.04em;
+}
+
+h1 {
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 0.9;
+}
+
+h2 {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 1;
+}
+
+h3 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+p {
+  margin: 0;
+  font-family: "Montserrat", "Avenir", Helvetica, Arial, sans-serif;
+  color: rgba(74, 47, 42, 0.82);
+  line-height: 1.8;
+}
+
+a {
+  color: var(--vino);
+  text-decoration: none;
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+a:hover {
+  color: var(--terracota);
+}
+
+/* ================================
+   BOTONES
+================================ */
+
+button,
+.btn-primary {
+  border: 1px solid rgba(216, 191, 168, 0.8);
+  border-radius: 1px;
+  padding: 0.1rem 0.1rem;
+  font-family: "Montserrat", "Avenir", Helvetica, Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--marfil);
+  background: linear-gradient(135deg, var(--vino), #8f3f4f);
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(111, 30, 52, 0.18);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+button:hover,
+.btn-primary:hover {
+  transform: translateY(-2px);
+  border-color: var(--terracota);
+  background: linear-gradient(135deg, var(--terracota), var(--vino));
+  box-shadow: 0 16px 38px rgba(111, 30, 52, 0.25);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 3px solid rgba(184, 115, 95, 0.28);
+  outline-offset: 3px;
+}
+
+.btn-ghost {
+  color: var(--vino);
+  background: rgba(255, 250, 244, 0.62);
+  border: 1px solid var(--champagne);
+  box-shadow: none;
+}
+
+.btn-ghost:hover {
+  color: var(--marfil);
+  background: var(--terracota);
+}
+
+/* ================================
+   INPUTS / FORMULARIOS
+================================ */
+
+input,
+textarea,
+select,
+.input-base {
+  width: 100%;
+  border: 1px solid rgba(216, 191, 168, 0.9);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  font-family: "Montserrat", "Avenir", Helvetica, Arial, sans-serif;
+  font-size: 0.95rem;
+  color: var(--tinta);
+  background: rgba(255, 250, 244, 0.72);
+  outline: none;
+  backdrop-filter: blur(10px);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.input-base:focus {
+  border-color: var(--terracota);
+  background: rgba(255, 250, 244, 0.95);
+  box-shadow: 0 0 0 4px rgba(184, 115, 95, 0.14);
+}
+
+label,
+.label-base {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-family: "Montserrat", "Avenir", Helvetica, Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(111, 30, 52, 0.78);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ================================
+   CONTENEDORES ESTILO INVITACIÓN
+================================ */
+
+.app-stage {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+}
+
+.wedding-card,
+.card-wedding {
+  border: 1px solid rgba(216, 191, 168, 0.75);
+  border-radius: 34px;
+  background: rgba(255, 250, 244, 0.72);
+  box-shadow: 0 24px 70px rgba(111, 30, 52, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.section-romantic {
+  position: relative;
+  border: 1px solid rgba(216, 191, 168, 0.7);
+  border-radius: 38px;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 244, 0.82), rgba(247, 239, 231, 0.62));
+  box-shadow: 0 18px 60px rgba(74, 47, 42, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.subtitle-romantic {
+  font-family: "Montserrat", "Avenir", Helvetica, Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--terracota);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.divider-romantic {
+  width: 90px;
+  height: 1px;
+  margin: 1.5rem auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--champagne),
+    transparent
+  );
+}
+
+/* ================================
+   ANIMACIONES JANE & GUILLE
+================================ */
+
+.screen-in {
+  animation: screenIn 0.55s ease forwards;
+}
+
+.screen-out {
+  animation: screenOut 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.page-in {
+  animation: pageIn 0.75s ease forwards;
+}
+
+.animate-fade-up {
+  animation: pageIn 0.75s ease both;
+}
+
+.animate-soft-float {
+  animation: softFloat 4s ease-in-out infinite;
+}
+
+@keyframes screenIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes screenOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.06);
+    filter: blur(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+    filter: blur(6px);
+  }
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes softFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+::selection {
+  color: var(--marfil);
+  background: var(--terracota);
+}
