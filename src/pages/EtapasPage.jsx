@@ -161,7 +161,7 @@ export function EtapasPage() {
             </h1>
 
             <p className="mt-5 max-w-xl font-body text-sm leading-relaxed text-tinta/65">
-              Organizá cada momento de la celebración para que
+              Organiza cada momento de la celebración para que
               las fotos y videos queden agrupados según cada
               etapa del evento.
             </p>
@@ -203,7 +203,7 @@ export function EtapasPage() {
             </h2>
 
             <p className="mt-3 max-w-sm font-body text-sm leading-relaxed text-tinta/55">
-              Creá las etapas para organizar los recuerdos
+              Crea las etapas para organizar los recuerdos
               según cada momento especial del evento.
             </p>
           </div>

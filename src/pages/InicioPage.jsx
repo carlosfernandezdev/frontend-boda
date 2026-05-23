@@ -149,7 +149,7 @@ export function InicioPage() {
             {tienePermiso('usuarios.asignar_rol') && (
               <div className="mt-6 rounded-3xl border border-terracota/25 bg-terracota/10 p-4">
                 <p className="font-body text-sm leading-relaxed text-vino">
-                  También podés administrar usuarios y roles dentro de la
+                  También puedes administrar usuarios y roles dentro de la
                   plataforma.
                 </p>
               </div>

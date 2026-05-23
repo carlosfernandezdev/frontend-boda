@@ -60,7 +60,7 @@ export function LoginPage() {
           </h1>
 
           <p className="mt-5 px-6 font-body text-sm leading-relaxed text-tinta/65">
-            Iniciá sesión para acceder a los recuerdos,
+            Inicia sesión para acceder a los recuerdos,
             fotografías y momentos especiales de nuestra celebración.
           </p>
         </div>
@@ -126,7 +126,7 @@ export function LoginPage() {
           </div>
 
           <p className="text-center font-body text-sm leading-relaxed text-tinta/60">
-            ¿Sos invitado y todavía no tenés cuenta?{' '}
+            ¿Eres invitado y todavía no tienes cuenta?{' '}
             <Link
               to="/registro"
               className="font-medium text-terracota transition hover:text-vino hover:underline"

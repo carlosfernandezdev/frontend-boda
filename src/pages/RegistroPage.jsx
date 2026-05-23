@@ -53,13 +53,13 @@ export function RegistroPage() {
         {/* Encabezado */}
         <div className="mb-10 text-center">
           <p className="subtitle-romantic">
-            Sumate a la celebración
+            Súmate a la celebración
           </p>
 
           <div className="divider-romantic" />
 
           <h1 className="font-display text-[3.8rem] leading-none text-vino md:text-[4.8rem]">
-            Creá
+            Crea
           </h1>
 
           <p className="mt-1 font-display text-2xl italic text-terracota">
@@ -154,7 +154,7 @@ export function RegistroPage() {
               to="/login"
               className="font-medium text-terracota transition hover:text-vino hover:underline"
             >
-              Iniciá sesión
+              Inicia sesión
             </Link>
           </p>
         </form>
