@@ -102,8 +102,7 @@ body {
 [class*="bg-[radial-gradient"] {
   background:
     radial-gradient(circle at top left, rgba(205, 189, 154, 0.26), transparent 34%),
-    radial-gradient(circle at bottom right, rgba(156, 174, 168, 0.20), transparent 38%),
-    linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 48%, var(--page-bg) 100%) !important;
+    radial-gradient(circle at bottom right, rgba(156, 174, 168, 0.20), transparent 38%) !important;
 }
 
 /* ================================
