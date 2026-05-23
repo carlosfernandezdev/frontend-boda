@@ -18,7 +18,7 @@ export function Layout({ children }) {
   }[usuario?.rol_nombre] || usuario?.rol_nombre;
 
   return (
-    <div className="min-h-screen bg-crema">
+    <div className="min-h-screen">
       <header className="sticky top-0 z-10 border-b border-champagne/60 bg-crema/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <Link to="/" className="font-display text-2xl text-vino">

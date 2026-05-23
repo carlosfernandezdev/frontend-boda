@@ -108,10 +108,10 @@ export function SubirArchivo({ onComplete }) {
         />
         <UploadCloud className="mx-auto mb-3 h-10 w-10 text-terracota" strokeWidth={1.5} />
         <p className="font-display text-xl text-vino">
-          Arrastrá tus fotos y videos acá
+          Arrastra tus fotos y videos acá
         </p>
         <p className="mt-1 font-body text-sm text-tinta/50">
-          o hacé click para elegir · imágenes y videos · hasta 200 MB c/u
+          o haz click para elegir · imágenes y videos 
         </p>
       </div>
 
