@@ -1,10 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Italiana&family=Parisienne&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ================================
-   ESTILO BASE — INVITACIÓN JANE & GUILLE
+   BASE — GAMA JANE & GUILLE
+   Inspirado en InvitePages.css
 ================================ */
+
+:root {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #2d4567;
+  background: #f7f3eb;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Paleta original de InvitePages.css */
+  --paper: #f7f3eb;
+  --paper-2: #fbf8f2;
+  --page-bg: #e8e2d7;
+  --ink: #2d4567;
+  --ink-soft: #5f6773;
+  --gold: #cdbd9a;
+  --line: #ddd2c3;
+  --line-soft: rgba(205, 189, 154, 0.45);
+  --card: rgba(255, 255, 255, 0.48);
+  --card-2: rgba(255, 255, 255, 0.62);
+  --btn: #9caea8;
+  --btn-deep: #8f9f99;
+  --shadow: 0 16px 38px rgba(70, 76, 88, 0.10);
+  --radius: 30px;
+  --radius-sm: 22px;
+
+  /* Alias para NO tocar el frontend existente */
+  --crema: var(--paper);
+  --marfil: var(--paper-2);
+  --arena: var(--page-bg);
+  --champagne: var(--line);
+  --terracota: var(--gold);
+  --vino: var(--btn);
+  --vino-deep: var(--btn-deep);
+  --rosa: rgba(156, 174, 168, 0.14);
+  --tinta: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
 
 html,
 body,
@@ -16,41 +65,41 @@ body,
 }
 
 html {
+  overflow-x: hidden;
+  overflow-y: auto;
   scroll-behavior: smooth;
-}
-
-:root {
-  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color: #4a2f2a;
-  background: #f7efe7;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  --crema: #f7efe7;
-  --marfil: #fffaf4;
-  --arena: #ead8c8;
-  --champagne: #d8bfa8;
-  --terracota: #b8735f;
-  --vino: #6f1e34;
-  --rosa: #d9a6a1;
-  --tinta: #4a2f2a;
+  background: var(--page-bg);
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
-  color: var(--tinta);
+  overflow-y: auto;
+  color: var(--ink);
   background:
-    radial-gradient(circle at top left, rgba(216, 191, 168, 0.45), transparent 34%),
-    radial-gradient(circle at bottom right, rgba(111, 30, 52, 0.16), transparent 38%),
-    linear-gradient(180deg, #fffaf4 0%, #f7efe7 48%, #ead8c8 100%);
+    radial-gradient(circle at top left, rgba(205, 189, 154, 0.26), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(156, 174, 168, 0.20), transparent 38%),
+    linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 48%, var(--page-bg) 100%);
+  font-family: "Cormorant Garamond", Georgia, serif;
+
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+#root {
+  background: transparent;
+}
+
+/* Si hay componentes con bg-[radial-gradient(...)] hardcodeado,
+   esta regla los lleva automáticamente a la gama Jane & Guille. */
+[class*="bg-[radial-gradient"] {
+  background:
+    radial-gradient(circle at top left, rgba(205, 189, 154, 0.26), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(156, 174, 168, 0.20), transparent 38%),
+    linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 48%, var(--page-bg) 100%) !important;
 }
 
 /* ================================
@@ -61,15 +110,15 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  font-weight: 500;
-  color: var(--vino);
-  letter-spacing: 0.04em;
+  font-family: "Parisienne", "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: 0.02em;
 }
 
 h1 {
   font-size: clamp(3rem, 9vw, 6.5rem);
-  line-height: 0.9;
+  line-height: 0.92;
 }
 
 h2 {
@@ -78,75 +127,177 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: clamp(1.55rem, 4vw, 2.4rem);
+}
+
+p,
+span,
+li,
+dt,
+dd,
+label,
+input,
+select,
+textarea,
+button,
+a {
+  font-family: "Cormorant Garamond", Georgia, serif;
 }
 
 p {
   margin: 0;
-  font-family: "Montserrat", "Avenir", Helvetica, Arial, sans-serif;
-  color: rgba(74, 47, 42, 0.82);
+  color: rgba(45, 69, 103, 0.78);
   line-height: 1.8;
 }
 
 a {
-  color: var(--vino);
+  color: var(--btn-deep);
   text-decoration: none;
   transition: color 0.25s ease, opacity 0.25s ease;
 }
 
 a:hover {
-  color: var(--terracota);
+  color: var(--ink);
+}
+
+/* ================================
+   COMPATIBILIDAD CON TAILWIND EXISTENTE
+   No tienes que cambiar clases como bg-vino, text-tinta, border-champagne, etc.
+================================ */
+
+.bg-crema { background-color: var(--paper) !important; }
+.bg-marfil { background-color: var(--paper-2) !important; }
+.bg-arena { background-color: var(--page-bg) !important; }
+.bg-champagne { background-color: var(--line) !important; }
+.bg-terracota { background-color: var(--gold) !important; }
+.bg-vino { background-color: var(--btn) !important; }
+.bg-rosa { background-color: var(--rosa) !important; }
+
+.text-crema { color: var(--paper-2) !important; }
+.text-marfil { color: var(--paper-2) !important; }
+.text-arena { color: var(--page-bg) !important; }
+.text-champagne { color: var(--gold) !important; }
+.text-terracota { color: var(--gold) !important; }
+.text-vino { color: var(--ink) !important; }
+.text-tinta { color: var(--ink) !important; }
+
+.border-crema { border-color: var(--paper) !important; }
+.border-marfil { border-color: var(--paper-2) !important; }
+.border-arena { border-color: var(--page-bg) !important; }
+.border-champagne { border-color: var(--line) !important; }
+.border-terracota { border-color: var(--gold) !important; }
+.border-vino { border-color: var(--btn) !important; }
+
+.bg-vino\/10 { background-color: rgba(156, 174, 168, 0.10) !important; }
+.bg-vino\/20 { background-color: rgba(156, 174, 168, 0.20) !important; }
+.bg-terracota\/10 { background-color: rgba(205, 189, 154, 0.18) !important; }
+.bg-terracota\/20 { background-color: rgba(205, 189, 154, 0.26) !important; }
+.bg-arena\/40 { background-color: rgba(232, 226, 215, 0.40) !important; }
+.bg-arena\/60 { background-color: rgba(232, 226, 215, 0.60) !important; }
+.bg-champagne\/70 { background-color: rgba(221, 210, 195, 0.70) !important; }
+
+.text-tinta\/35 { color: rgba(45, 69, 103, 0.35) !important; }
+.text-tinta\/40 { color: rgba(45, 69, 103, 0.40) !important; }
+.text-tinta\/50 { color: rgba(45, 69, 103, 0.50) !important; }
+.text-tinta\/55 { color: rgba(45, 69, 103, 0.55) !important; }
+.text-tinta\/60 { color: rgba(45, 69, 103, 0.60) !important; }
+.text-tinta\/65 { color: rgba(45, 69, 103, 0.65) !important; }
+.text-tinta\/70 { color: rgba(45, 69, 103, 0.70) !important; }
+
+.text-vino\/80 { color: rgba(45, 69, 103, 0.80) !important; }
+.text-terracota\/80 { color: rgba(205, 189, 154, 0.88) !important; }
+
+.border-champagne\/60 { border-color: rgba(221, 210, 195, 0.60) !important; }
+.border-champagne\/70 { border-color: rgba(221, 210, 195, 0.70) !important; }
+.border-terracota\/25 { border-color: rgba(205, 189, 154, 0.25) !important; }
+.border-terracota\/30 { border-color: rgba(205, 189, 154, 0.30) !important; }
+
+.shadow-suave {
+  box-shadow: var(--shadow) !important;
 }
 
 /* ================================
    BOTONES
 ================================ */
 
-button,
-.btn-primary {
-  border: 1px solid rgba(216, 191, 168, 0.8);
-  border-radius: 1px;
-  padding: 0.1rem 0.1rem;
-  font-family: "Montserrat", "Avenir", Helvetica, Arial, sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--marfil);
-  background: linear-gradient(135deg, var(--vino), #8f3f4f);
+button {
+  font-family: inherit;
   cursor: pointer;
-  box-shadow: 0 12px 30px rgba(111, 30, 52, 0.18);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.8rem;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #fffef9;
+
+  background: linear-gradient(180deg, var(--btn), var(--btn-deep));
+  box-shadow: 0 8px 18px rgba(143, 159, 153, 0.18);
+
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
-    background 0.25s ease,
-    border-color 0.25s ease;
+    filter 0.25s ease,
+    background 0.25s ease;
 }
 
-button:hover,
 .btn-primary:hover {
   transform: translateY(-2px);
-  border-color: var(--terracota);
-  background: linear-gradient(135deg, var(--terracota), var(--vino));
-  box-shadow: 0 16px 38px rgba(111, 30, 52, 0.25);
+  box-shadow: 0 12px 24px rgba(70, 76, 88, 0.14);
+  filter: brightness(1.02);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 3px solid rgba(184, 115, 95, 0.28);
-  outline-offset: 3px;
+.btn-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
 }
 
 .btn-ghost {
-  color: var(--vino);
-  background: rgba(255, 250, 244, 0.62);
-  border: 1px solid var(--champagne);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.75rem 1.4rem;
+
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.48);
   box-shadow: none;
+  backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
 .btn-ghost:hover {
-  color: var(--marfil);
-  background: var(--terracota);
+  transform: translateY(-1px);
+  border-color: var(--gold);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+button:focus,
+button:focus-visible,
+a:focus,
+a:focus-visible {
+  outline: 3px solid rgba(156, 174, 168, 0.26);
+  outline-offset: 3px;
 }
 
 /* ================================
@@ -158,40 +309,50 @@ textarea,
 select,
 .input-base {
   width: 100%;
-  border: 1px solid rgba(216, 191, 168, 0.9);
-  border-radius: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
   padding: 0.9rem 1rem;
-  font-family: "Montserrat", "Avenir", Helvetica, Arial, sans-serif;
-  font-size: 0.95rem;
-  color: var(--tinta);
-  background: rgba(255, 250, 244, 0.72);
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--ink);
+
+  background: rgba(255, 255, 255, 0.62);
   outline: none;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
+
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
-    background 0.25s ease;
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(95, 103, 115, 0.55);
 }
 
 input:focus,
 textarea:focus,
 select:focus,
 .input-base:focus {
-  border-color: var(--terracota);
-  background: rgba(255, 250, 244, 0.95);
-  box-shadow: 0 0 0 4px rgba(184, 115, 95, 0.14);
+  border-color: rgba(156, 174, 168, 0.95);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 0 0 4px rgba(156, 174, 168, 0.14);
 }
 
 label,
 .label-base {
   display: block;
   margin-bottom: 0.45rem;
-  font-family: "Montserrat", "Avenir", Helvetica, Arial, sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: rgba(111, 30, 52, 0.78);
+
+  font-family: "Italiana", "Cormorant Garamond", Georgia, serif;
+  font-size: 0.84rem;
+  font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: rgba(45, 69, 103, 0.78);
 }
 
 /* ================================
@@ -211,42 +372,70 @@ label,
 
 .wedding-card,
 .card-wedding {
-  border: 1px solid rgba(216, 191, 168, 0.75);
-  border-radius: 34px;
-  background: rgba(255, 250, 244, 0.72);
-  box-shadow: 0 24px 70px rgba(111, 30, 52, 0.12);
-  backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card-2);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
 }
 
 .section-romantic {
   position: relative;
-  border: 1px solid rgba(216, 191, 168, 0.7);
-  border-radius: 38px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   background:
-    linear-gradient(180deg, rgba(255, 250, 244, 0.82), rgba(247, 239, 231, 0.62));
-  box-shadow: 0 18px 60px rgba(74, 47, 42, 0.08);
-  backdrop-filter: blur(14px);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.42));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
 }
 
 .subtitle-romantic {
-  font-family: "Montserrat", "Avenir", Helvetica, Arial, sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--terracota);
-  letter-spacing: 0.28em;
+  font-family: "Italiana", "Cormorant Garamond", Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .divider-romantic {
-  width: 90px;
+  width: 96px;
   height: 1px;
-  margin: 1.5rem auto;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--champagne),
-    transparent
-  );
+  margin: 1.35rem auto;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ================================
+   FILTROS / PILLS EN MÓVIL
+   Compatible con FiltrosBar actual
+================================ */
+
+select.rounded-full {
+  min-height: 48px;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  accent-color: var(--btn);
+}
+
+@media (max-width: 640px) {
+  .rounded-full.border.border-champagne.bg-white\/50.p-1 {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .rounded-full.border.border-champagne.bg-white\/50.p-1 > button {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+  }
+
+  label:has(input[type="checkbox"]) {
+    min-height: 54px;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
 }
 
 /* ================================
@@ -261,16 +450,29 @@ label,
   animation: screenOut 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-.page-in {
-  animation: pageIn 0.75s ease forwards;
-}
-
+.page-in,
 .animate-fade-up {
   animation: pageIn 0.75s ease both;
 }
 
 .animate-soft-float {
   animation: softFloat 4s ease-in-out infinite;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(48px) scale(0.97);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s ease;
+  will-change: transform, opacity;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: none;
 }
 
 @keyframes screenIn {
@@ -308,12 +510,14 @@ label,
 @keyframes pageIn {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(24px);
+    filter: blur(2px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
@@ -329,6 +533,25 @@ label,
 }
 
 ::selection {
-  color: var(--marfil);
-  background: var(--terracota);
+  color: #fffef9;
+  background: var(--btn);
+}
+
+/* ================================
+   ACCESIBILIDAD
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
