@@ -67,8 +67,6 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
             </button>
           </div>
 
-          <p className="mb-4 break-words font-body text-sm text-tinta">{archivo.nombre}</p>
-
           <dl className="space-y-3 font-body text-sm">
             <Info icon={User} label="Subido por" valor={archivo.usuario_nombre} />
             <Info
