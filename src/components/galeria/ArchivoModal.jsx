@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { X, MapPin, Calendar, Camera, User, Clock } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { formatFecha, formatBytes } from '../../utils/format.js';
@@ -6,6 +7,10 @@ import { formatFecha, formatBytes } from '../../utils/format.js';
 /**
  * Modal de detalle. Muestra el archivo grande + su metadata.
  * Moderadores y dueños pueden reasignar la etapa desde acá.
+ *
+ * Se renderiza con un Portal directo al <body> para que ningún ancestro
+ * con filter / transform / backdrop-filter (como .animate-fade-up) lo
+ * convierta en "absolute" y lo descentre de la pantalla.
  */
 export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
   const { usuario, tienePermiso } = useAuth();
@@ -18,6 +23,15 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [onCerrar]);
 
+  // Bloquear scroll del fondo mientras el modal está abierto
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, []);
+
   if (!archivo) return null;
 
   const esDueno = archivo.usuario_id === usuario?.id;
@@ -29,9 +43,9 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
     onReasignarEtapa(archivo, nuevaEtapa);
   };
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-tinta/70 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-tinta/70 p-4 backdrop-blur-sm"
       onClick={onCerrar}
     >
       <div
@@ -120,7 +134,8 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
