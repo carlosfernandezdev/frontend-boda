@@ -82,8 +82,8 @@ body {
   background-image: url("/fondo1.jpeg");
   background-size: cover;
   background-position: top center;
-  background-repeat: repeat-y;
-  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
   font-family: "Cormorant Garamond", Georgia, serif;
 
