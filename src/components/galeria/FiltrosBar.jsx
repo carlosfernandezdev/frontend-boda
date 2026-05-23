@@ -50,7 +50,7 @@ export function FiltrosBar({ filtros, setFiltros, etapas }) {
       </select>
 
       {/* Solo míos */}
-      <label className="flex cursor-pointer items-center gap-2 rounded-full border border-champagne bg-white/50 px-4 py-2 font-body text-sm text-tinta/70">
+      <label className="flex w-full min-w-0 items-center justify-center gap-2 rounded-full border border-champagne/70 bg-white/50 px-4 py-2 text-center font-body text-sm text-tinta/70 backdrop-blur-sm transition hover:border-terracota hover:bg-arena/40 sm:w-auto">
         <input
           type="checkbox"
           checked={filtros.solo_mios}
@@ -62,7 +62,7 @@ export function FiltrosBar({ filtros, setFiltros, etapas }) {
 
       {/* Ver ocultos (solo moderadores) */}
       {esModerador && (
-        <label className="flex cursor-pointer items-center gap-2 rounded-full border border-champagne bg-white/50 px-4 py-2 font-body text-sm text-tinta/70">
+        <label className="flex w-full min-w-0 items-center justify-center gap-2 rounded-full border border-champagne/70 bg-white/50 px-4 py-2 text-center font-body text-sm text-tinta/70 backdrop-blur-sm transition hover:border-terracota hover:bg-arena/40 sm:w-auto">
           <input
             type="checkbox"
             checked={filtros.ver_ocultos}
