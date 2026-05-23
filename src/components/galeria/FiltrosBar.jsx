@@ -12,7 +12,7 @@ export function FiltrosBar({ filtros, setFiltros, etapas }) {
     setFiltros((f) => ({ ...f, [campo]: valor, page: 1 }));
 
   return (
-    <div className="mb-6 flex flex-wrap items-center gap-3">
+    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
       {/* Tipo */}
       <div className="flex rounded-full border border-champagne bg-white/50 p-1">
         {[
