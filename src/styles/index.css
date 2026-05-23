@@ -77,10 +77,14 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   color: var(--ink);
-  background:
-    radial-gradient(circle at top left, rgba(205, 189, 154, 0.26), transparent 34%),
-    radial-gradient(circle at bottom right, rgba(156, 174, 168, 0.20), transparent 38%),
-    linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 48%, var(--page-bg) 100%);
+
+  background-color: #f7f3eb;
+  background-image: url("/fondo2.jpeg");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: repeat-y;
+  background-attachment: scroll;
+
   font-family: "Cormorant Garamond", Georgia, serif;
 
   padding-top: env(safe-area-inset-top);
