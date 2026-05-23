@@ -34,7 +34,6 @@ export function ArchivoCard({ archivo, onAbrir, onEliminar, onToggleVisible }) {
         {archivo.tipo === 'imagen' ? (
           <img
             src={archivo.url}
-            alt={archivo.nombre}
             loading="lazy"
             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
           />
@@ -61,7 +60,7 @@ export function ArchivoCard({ archivo, onAbrir, onEliminar, onToggleVisible }) {
           <p className="truncate font-body text-xs font-medium text-tinta">
             {archivo.usuario_nombre || 'Invitado'}
           </p>
-          {archivo.etapa_nombre && (
+          {(
             <p className="truncate font-body text-[11px] text-terracota">
               {archivo.etapa_nombre}
             </p>

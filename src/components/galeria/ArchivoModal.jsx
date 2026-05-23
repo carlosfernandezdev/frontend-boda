@@ -43,7 +43,6 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
           {archivo.tipo === 'imagen' ? (
             <img
               src={archivo.url}
-              alt={archivo.nombre}
               className="max-h-[80vh] w-auto object-contain"
             />
           ) : (
@@ -75,7 +74,7 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
             <Info
               icon={Calendar}
               label="Tomada"
-              valor={archivo.tomada_en ? formatFecha(archivo.tomada_en) : 'Sin metadata'}
+              valor={archivo.tomada_en ? formatFecha(archivo.tomada_en) : 'Sin fecha'}
             />
             <Info icon={Clock} label="Subida" valor={formatFecha(archivo.created_at)} />
             {meta.camara && <Info icon={Camera} label="Cámara" valor={meta.camara} />}
@@ -95,13 +94,7 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
                 }
               />
             )}
-            <Info label="Tamaño" valor={formatBytes(archivo.tamano_bytes)} />
-            {(meta.ancho && meta.alto) && (
-              <Info label="Dimensiones" valor={`${meta.ancho} × ${meta.alto}`} />
-            )}
-            {meta.duracion_seg && (
-              <Info label="Duración" valor={`${Math.round(meta.duracion_seg)}s`} />
-            )}
+            
           </dl>
 
           {/* Reasignar etapa */}
