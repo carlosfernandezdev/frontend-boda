@@ -186,14 +186,7 @@ export function GaleriaPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden px-4 py-10">
-      {/* Fondo Jane & Guille */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(216,191,168,0.38),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(111,30,52,0.15),transparent_38%),linear-gradient(180deg,#fffaf4_0%,#f7efe7_45%,#ead8c8_100%)]" />
-
-      <div className="absolute left-[-120px] top-[-120px] h-[320px] w-[320px] rounded-full bg-vino/10 blur-3xl" />
-
-      <div className="absolute bottom-[-120px] right-[-120px] h-[320px] w-[320px] rounded-full bg-terracota/20 blur-3xl" />
-
+    <div className="relative min-h-screen px-4 py-10">
       <div className="relative z-10 mx-auto max-w-7xl animate-fade-up">
         {/* Header */}
         <div className="mb-12 text-center">
