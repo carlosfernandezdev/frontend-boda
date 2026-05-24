@@ -161,13 +161,13 @@ export function GaleriaPage() {
           etapa_id,
         });
 
+      // Actualiza la lista en sitio. No reabrimos el modal:
+      // la etapa se guarda justo al cerrarlo.
       setArchivos((prev) =>
         prev.map((a) =>
           a.id === archivo.id ? actualizado : a
         )
       );
-
-      setSeleccionado(actualizado);
     } catch (err) {
       alert(
         getErrorMessage(
