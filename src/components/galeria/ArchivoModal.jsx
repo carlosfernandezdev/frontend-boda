@@ -5,17 +5,6 @@ import { useAuth } from '../../context/AuthContext.jsx';
 import { formatFecha, formatBytes } from '../../utils/format.js';
 
 /**
- * Fuerza la descarga en vez de abrir el archivo. Si es una URL de Cloudinary,
- * inserta fl_attachment para que el servidor mande Content-Disposition: attachment.
- */
-function urlConDescarga(url) {
-  if (typeof url === 'string' && url.includes('/upload/')) {
-    return url.replace('/upload/', '/upload/fl_attachment/');
-  }
-  return url;
-}
-
-/**
  * Modal de detalle. Muestra el archivo grande + su metadata.
  *
  * - El botón principal descarga la foto/video al dispositivo.
@@ -68,22 +57,37 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
   const descargar = async () => {
     setDescargando(true);
     try {
-      // Camino robusto: bajar el binario como blob y disparar la descarga
+      // Necesita CORS habilitado en el bucket R2 para poder leer el binario
       const res = await fetch(archivo.url, { mode: 'cors' });
       const blob = await res.blob();
-      const objectUrl = URL.createObjectURL(blob);
+      const nombre = archivo.nombre || 'recuerdo';
+      const file = new File([blob], nombre, { type: blob.type });
 
+      // MÓVIL: hoja de compartir nativa -> permite "Guardar en Fotos"
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: nombre });
+          return;
+        } catch (e) {
+          // Si el usuario cancela la hoja, no hacemos nada más
+          if (e?.name === 'AbortError') return;
+          // Si share falla por otro motivo, caemos a la descarga normal
+        }
+      }
+
+      // ESCRITORIO (o sin Web Share): descarga al folder de Descargas
+      const objectUrl = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = objectUrl;
-      a.download = archivo.nombre || 'recuerdo';
+      a.download = nombre;
       document.body.appendChild(a);
       a.click();
       a.remove();
-
       URL.revokeObjectURL(objectUrl);
     } catch {
-      // Fallback: URL forzada a attachment (Cloudinary) en pestaña nueva
-      window.open(urlConDescarga(archivo.url), '_blank', 'noopener');
+      // Último recurso si el fetch falla (CORS sin configurar):
+      // abre el archivo en una pestaña para guardarlo manualmente
+      window.open(archivo.url, '_blank', 'noopener');
     } finally {
       setDescargando(false);
     }
