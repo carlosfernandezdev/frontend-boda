@@ -58,7 +58,7 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
     setDescargando(true);
     try {
       // Necesita CORS habilitado en el bucket R2 para poder leer el binario
-      const res = await fetch(archivo.url, { mode: 'cors' });
+      const res = await fetch(archivo.url, { mode: 'cors', cache: 'no-store' });
       const blob = await res.blob();
       const nombre = archivo.nombre || 'recuerdo';
       const file = new File([blob], nombre, { type: blob.type });
