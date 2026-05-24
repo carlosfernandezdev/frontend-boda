@@ -10,7 +10,9 @@ const MIMES_OK = [
 
 /**
  * Zona de carga. Sube los archivos uno por uno (el backend acepta uno por request)
- * y muestra el progreso individual. Al terminar todos, llama onComplete().
+ * y muestra el progreso individual. Al terminar todos, refresca la galería
+ * (onComplete) y limpia automáticamente los que subieron bien, dejando
+ * visibles solo los que fallaron.
  */
 export function SubirArchivo({ onComplete }) {
   const [arrastrando, setArrastrando] = useState(false);
@@ -36,6 +38,8 @@ export function SubirArchivo({ onComplete }) {
       }));
       setItems((prev) => [...prev, ...nuevos]);
 
+      let huboExito = false;
+
       // Subir secuencialmente
       for (const item of nuevos) {
         setItems((prev) =>
@@ -48,6 +52,7 @@ export function SubirArchivo({ onComplete }) {
                 prev.map((it) => (it.id === item.id ? { ...it, progreso: p } : it))
               ),
           });
+          huboExito = true;
           setItems((prev) =>
             prev.map((it) =>
               it.id === item.id ? { ...it, estado: 'ok', progreso: 100 } : it
@@ -65,7 +70,16 @@ export function SubirArchivo({ onComplete }) {
       }
 
       setSubiendo(false);
-      onComplete?.();
+
+      // Refrescar la galería solo si al menos una subió bien
+      if (huboExito) {
+        onComplete?.();
+      }
+
+      // Limpiar automáticamente los completados (deja visibles los errores)
+      setTimeout(() => {
+        setItems((prev) => prev.filter((it) => it.estado !== 'ok'));
+      }, 1200);
     },
     [onComplete]
   );
