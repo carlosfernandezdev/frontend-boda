@@ -10,7 +10,7 @@ export default defineConfig({
     // no necesita saber la URL del backend (usa rutas relativas).
     proxy: {
       '/api': {
-        target: 'https://backend-boda-production-4457.up.railway.app/',
+        target: 'https://backend-boda-production-4457.up.railway.app',
         changeOrigin: true,
       },
     },

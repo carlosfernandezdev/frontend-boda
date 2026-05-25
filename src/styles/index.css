@@ -4,10 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ================================
-   BASE — GAMA JANE & GUILLE
-   Inspirado en InvitePages.css
-================================ */
+/* =========================================
+   GLOBAL BASE
+========================================= */
 
 :root {
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -22,34 +21,48 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Paleta original de InvitePages.css */
+  /* PALETA */
   --paper: #f7f3eb;
   --paper-2: #fbf8f2;
   --page-bg: #e8e2d7;
+
   --ink: #2d4567;
   --ink-soft: #5f6773;
+
   --gold: #cdbd9a;
   --line: #ddd2c3;
   --line-soft: rgba(205, 189, 154, 0.45);
+
   --card: rgba(255, 255, 255, 0.48);
   --card-2: rgba(255, 255, 255, 0.62);
+
   --btn: #9caea8;
   --btn-deep: #8f9f99;
-  --shadow: 0 16px 38px rgba(70, 76, 88, 0.10);
+
+  --shadow: 0 16px 38px rgba(70, 76, 88, 0.1);
+
   --radius: 30px;
   --radius-sm: 22px;
 
-  /* Alias para NO tocar el frontend existente */
+  /* aliases */
   --crema: var(--paper);
   --marfil: var(--paper-2);
   --arena: var(--page-bg);
+
   --champagne: var(--line);
   --terracota: var(--gold);
+
   --vino: var(--btn);
   --vino-deep: var(--btn-deep);
+
   --rosa: rgba(156, 174, 168, 0.14);
+
   --tinta: var(--ink);
 }
+
+/* =========================================
+   RESET
+========================================= */
 
 * {
   box-sizing: border-box;
@@ -66,7 +79,6 @@ body,
 
 html {
   overflow-x: hidden;
-  overflow-y: auto;
   scroll-behavior: smooth;
   background: var(--page-bg);
 }
@@ -75,15 +87,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: auto;
-  color: var(--ink);
 
-  background-color: #f7f3eb;
-  background-image: url("/fondo1.jpeg");
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: var(--page-bg);
+  color: var(--ink);
 
   font-family: "Cormorant Garamond", Georgia, serif;
 
@@ -94,20 +100,12 @@ body {
 }
 
 #root {
-  background: transparent;
+  position: relative;
 }
 
-/* Si hay componentes con bg-[radial-gradient(...)] hardcodeado,
-   esta regla los lleva automáticamente a la gama Jane & Guille. */
-[class*="bg-[radial-gradient"] {
-  background:
-    radial-gradient(circle at top left, rgba(205, 189, 154, 0.26), transparent 34%),
-    radial-gradient(circle at bottom right, rgba(156, 174, 168, 0.20), transparent 38%) !important;
-}
-
-/* ================================
+/* =========================================
    TIPOGRAFÍA
-================================ */
+========================================= */
 
 h1,
 h2,
@@ -156,179 +154,158 @@ p {
 a {
   color: var(--btn-deep);
   text-decoration: none;
-  transition: color 0.25s ease, opacity 0.25s ease;
+  transition: 0.25s ease;
 }
 
 a:hover {
   color: var(--ink);
 }
 
-/* ================================
-   COMPATIBILIDAD CON TAILWIND EXISTENTE
-   No tienes que cambiar clases como bg-vino, text-tinta, border-champagne, etc.
-================================ */
+/* =========================================
+   UTILIDADES TAILWIND CUSTOM
+========================================= */
 
 .bg-crema { background-color: var(--paper) !important; }
 .bg-marfil { background-color: var(--paper-2) !important; }
 .bg-arena { background-color: var(--page-bg) !important; }
+
 .bg-champagne { background-color: var(--line) !important; }
 .bg-terracota { background-color: var(--gold) !important; }
 .bg-vino { background-color: var(--btn) !important; }
-.bg-rosa { background-color: var(--rosa) !important; }
 
-.text-crema { color: var(--paper-2) !important; }
-.text-marfil { color: var(--paper-2) !important; }
-.text-arena { color: var(--page-bg) !important; }
-.text-champagne { color: var(--gold) !important; }
-.text-terracota { color: var(--gold) !important; }
-.text-vino { color: var(--ink) !important; }
 .text-tinta { color: var(--ink) !important; }
+.text-vino { color: var(--ink) !important; }
+.text-terracota { color: var(--gold) !important; }
 
-.border-crema { border-color: var(--paper) !important; }
-.border-marfil { border-color: var(--paper-2) !important; }
-.border-arena { border-color: var(--page-bg) !important; }
 .border-champagne { border-color: var(--line) !important; }
 .border-terracota { border-color: var(--gold) !important; }
 .border-vino { border-color: var(--btn) !important; }
 
-.bg-vino\/10 { background-color: rgba(156, 174, 168, 0.10) !important; }
-.bg-vino\/20 { background-color: rgba(156, 174, 168, 0.20) !important; }
-.bg-terracota\/10 { background-color: rgba(205, 189, 154, 0.18) !important; }
-.bg-terracota\/20 { background-color: rgba(205, 189, 154, 0.26) !important; }
-.bg-arena\/40 { background-color: rgba(232, 226, 215, 0.40) !important; }
-.bg-arena\/60 { background-color: rgba(232, 226, 215, 0.60) !important; }
-.bg-champagne\/70 { background-color: rgba(221, 210, 195, 0.70) !important; }
-
-.text-tinta\/35 { color: rgba(45, 69, 103, 0.35) !important; }
-.text-tinta\/40 { color: rgba(45, 69, 103, 0.40) !important; }
-.text-tinta\/50 { color: rgba(45, 69, 103, 0.50) !important; }
-.text-tinta\/55 { color: rgba(45, 69, 103, 0.55) !important; }
-.text-tinta\/60 { color: rgba(45, 69, 103, 0.60) !important; }
-.text-tinta\/65 { color: rgba(45, 69, 103, 0.65) !important; }
-.text-tinta\/70 { color: rgba(45, 69, 103, 0.70) !important; }
-
-.text-vino\/80 { color: rgba(45, 69, 103, 0.80) !important; }
-.text-terracota\/80 { color: rgba(205, 189, 154, 0.88) !important; }
-
-.border-champagne\/60 { border-color: rgba(221, 210, 195, 0.60) !important; }
-.border-champagne\/70 { border-color: rgba(221, 210, 195, 0.70) !important; }
-.border-terracota\/25 { border-color: rgba(205, 189, 154, 0.25) !important; }
-.border-terracota\/30 { border-color: rgba(205, 189, 154, 0.30) !important; }
-
-.shadow-suave {
-  box-shadow: var(--shadow) !important;
+.bg-vino\/10 {
+  background-color: rgba(156, 174, 168, 0.1) !important;
 }
 
-/* ================================
+.bg-vino\/20 {
+  background-color: rgba(156, 174, 168, 0.2) !important;
+}
+
+.bg-terracota\/10 {
+  background-color: rgba(205, 189, 154, 0.14) !important;
+}
+
+.bg-terracota\/20 {
+  background-color: rgba(205, 189, 154, 0.24) !important;
+}
+
+.text-tinta\/35 {
+  color: rgba(45, 69, 103, 0.35) !important;
+}
+
+.text-tinta\/50 {
+  color: rgba(45, 69, 103, 0.5) !important;
+}
+
+.text-tinta\/60 {
+  color: rgba(45, 69, 103, 0.6) !important;
+}
+
+.text-tinta\/65 {
+  color: rgba(45, 69, 103, 0.65) !important;
+}
+
+.border-terracota\/25 {
+  border-color: rgba(205, 189, 154, 0.25) !important;
+}
+
+.border-champagne\/70 {
+  border-color: rgba(221, 210, 195, 0.7) !important;
+}
+
+/* =========================================
    BOTONES
-================================ */
+========================================= */
 
 button {
-  font-family: inherit;
   cursor: pointer;
+  font-family: inherit;
 }
 
 .btn-primary {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+
+
+  width: fit-content;
 
   border: none;
   border-radius: 999px;
-  padding: 0.85rem 1.8rem;
 
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  padding: 0.9rem 1.8rem;
+
+  background: linear-gradient(
+    180deg,
+    var(--btn),
+    var(--btn-deep)
+  );
+
   color: #fffef9;
 
-  background: linear-gradient(180deg, var(--btn), var(--btn-deep));
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+
   box-shadow: 0 8px 18px rgba(143, 159, 153, 0.18);
 
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
-    filter 0.25s ease,
-    background 0.25s ease;
+    filter 0.25s ease;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
+
   box-shadow: 0 12px 24px rgba(70, 76, 88, 0.14);
-  filter: brightness(1.02);
+
+  filter: brightness(1.03);
 }
 
 .btn-primary:disabled {
+  opacity: 0.6;
   cursor: not-allowed;
-  opacity: 0.55;
-  transform: none;
 }
 
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.75rem 1.4rem;
-
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.48);
-  box-shadow: none;
-  backdrop-filter: blur(8px);
-
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease;
-}
-
-.btn-ghost:hover {
-  transform: translateY(-1px);
-  border-color: var(--gold);
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.68);
-}
-
-button:focus,
-button:focus-visible,
-a:focus,
-a:focus-visible {
-  outline: 3px solid rgba(156, 174, 168, 0.26);
-  outline-offset: 3px;
-}
-
-/* ================================
-   INPUTS / FORMULARIOS
-================================ */
+/* =========================================
+   INPUTS
+========================================= */
 
 input,
 textarea,
 select,
 .input-base {
   width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 0.9rem 1rem;
 
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.05rem;
+  border: 1px solid var(--line);
+
+  border-radius: 16px;
+
+  padding: 0.95rem 1rem;
+
+  background: rgba(255, 255, 255, 0.7);
+
   color: var(--ink);
 
-  background: rgba(255, 255, 255, 0.62);
+  font-size: 1rem;
+
   outline: none;
-  backdrop-filter: blur(8px);
+
+  backdrop-filter: blur(10px);
 
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
-    background 0.25s ease,
-    transform 0.25s ease;
+    background 0.25s ease;
 }
 
 input::placeholder,
@@ -341,180 +318,93 @@ textarea:focus,
 select:focus,
 .input-base:focus {
   border-color: rgba(156, 174, 168, 0.95);
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 0 0 4px rgba(156, 174, 168, 0.14);
+
+  background: rgba(255, 255, 255, 0.88);
+
+  box-shadow:
+    0 0 0 4px rgba(156, 174, 168, 0.14);
 }
 
 label,
 .label-base {
   display: block;
+
   margin-bottom: 0.45rem;
 
-  font-family: "Italiana", "Cormorant Garamond", Georgia, serif;
+  font-family: "Italiana", serif;
+
   font-size: 0.84rem;
-  font-weight: 400;
+
   letter-spacing: 0.12em;
+
   text-transform: uppercase;
+
   color: rgba(45, 69, 103, 0.78);
 }
 
-/* ================================
-   CONTENEDORES ESTILO INVITACIÓN
-================================ */
-
-.app-stage {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-.screen {
-  position: absolute;
-  inset: 0;
-}
-
-.wedding-card,
-.card-wedding {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--card-2);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
-}
+/* =========================================
+   CARDS / SECTIONS
+========================================= */
 
 .section-romantic {
   position: relative;
+
   border: 1px solid var(--line);
+
   border-radius: var(--radius);
+
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.42));
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.895),
+      rgba(255, 255, 255, 0.716)
+    );
+
   box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
+
+  backdrop-filter: blur(12px);
 }
 
 .subtitle-romantic {
-  font-family: "Italiana", "Cormorant Garamond", Georgia, serif;
+  font-family: "Italiana", serif;
+
   font-size: 0.95rem;
-  font-weight: 400;
-  color: var(--ink-soft);
+
   letter-spacing: 0.14em;
+
   text-transform: uppercase;
+
+  color: var(--ink-soft);
 }
 
 .divider-romantic {
   width: 96px;
   height: 1px;
+
   margin: 1.35rem auto;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold),
+      transparent
+    );
 }
 
-/* ================================
-   FILTROS / PILLS EN MÓVIL
-   Compatible con FiltrosBar actual
-================================ */
+/* =========================================
+   ANIMACIONES
+========================================= */
 
-select.rounded-full {
-  min-height: 48px;
-}
-
-input[type="checkbox"] {
-  width: auto;
-  accent-color: var(--btn);
-}
-
-@media (max-width: 640px) {
-  .rounded-full.border.border-champagne.bg-white\/50.p-1 {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .rounded-full.border.border-champagne.bg-white\/50.p-1 > button {
-    flex: 1 1 0;
-    min-width: 0;
-    text-align: center;
-  }
-
-  label:has(input[type="checkbox"]) {
-    min-height: 54px;
-    margin-bottom: 0;
-    white-space: nowrap;
-  }
-}
-
-/* ================================
-   ANIMACIONES JANE & GUILLE
-================================ */
-
-.screen-in {
-  animation: screenIn 0.55s ease forwards;
-}
-
-.screen-out {
-  animation: screenOut 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
-.page-in,
 .animate-fade-up {
-  animation: pageIn 0.75s ease both;
+  animation: fadeUp 0.75s ease both;
 }
 
-.animate-soft-float {
-  animation: softFloat 4s ease-in-out infinite;
-}
-
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(48px) scale(0.97);
-  transition:
-    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.85s ease;
-  will-change: transform, opacity;
-}
-
-.reveal-on-scroll.revealed {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: none;
-}
-
-@keyframes screenIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes screenOut {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-    filter: blur(0px);
-  }
-
-  60% {
-    opacity: 1;
-    transform: scale(1.06);
-    filter: blur(0px);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1.18);
-    filter: blur(6px);
-  }
-}
-
-@keyframes pageIn {
+@keyframes fadeUp {
   from {
     opacity: 0;
     transform: translateY(24px);
-    filter: blur(2px);
+    filter: blur(3px);
   }
 
   to {
@@ -524,25 +414,18 @@ input[type="checkbox"] {
   }
 }
 
-@keyframes softFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-7px);
-  }
-}
+/* =========================================
+   SELECTION
+========================================= */
 
 ::selection {
-  color: #fffef9;
   background: var(--btn);
+  color: white;
 }
 
-/* ================================
+/* =========================================
    ACCESIBILIDAD
-================================ */
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -551,10 +434,5 @@ input[type="checkbox"] {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
-  }
-
-  .reveal-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
   }
 }

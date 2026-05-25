@@ -30,40 +30,72 @@ export function LoginPage() {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-4">
-      {/* Fondo romántico */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(216,191,168,0.35),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(111,30,52,0.15),transparent_38%),linear-gradient(180deg,#fffaf4_0%,#f7efe7_45%,#ead8c8_100%)]" />
+<div className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-10">
+  
+  {/* Fondo base */}
+  <div className="absolute inset-0 bg-[#f7f3eb]" />
 
+  {/* Imagen */}
+  <div className="absolute inset-0 overflow-hidden">
+   <img
+  src="/estancia.jpeg"
+  alt=""
+  className="
+    h-full
+    w-full
+    object-cover
+    object-[center_top]
+    scale-125
+    object-top
+    opacity-95
+    animate-fade-up
+  "
+/>
+  
+  </div>
+
+  {/* Overlay suave para integrar */}
+  <div className="absolute inset-0" />
+
+
+{/* Glow decorativo */}
+<div className="absolute left-[-120px] top-[-120px] h-[320px] w-[320px] rounded-full bg-vino/10 blur-3xl" />
+
+<div className="absolute bottom-[-120px] right-[-120px] h-[320px] w-[320px] rounded-full bg-terracota/20 blur-3xl" />
+
+{/* Overlay suave */}
+<div className="absolute inset-0 " />
       {/* Glow decorativo */}
       <div className="absolute left-[-120px] top-[-120px] h-[320px] w-[320px] rounded-full bg-vino/10 blur-3xl" />
       <div className="absolute bottom-[-120px] right-[-120px] h-[320px] w-[320px] rounded-full bg-terracota/20 blur-3xl" />
 
       <div className="relative z-10 w-full max-w-md animate-fade-up">
         {/* Header */}
-        <div className="mb-10 text-center">
-          <p className="subtitle-romantic">
-            Nuestra boda
-          </p>
+        <div className="mb-24 text-center">
+  <p className="subtitle-romantic mb-0 leading-none">
+  Guillermo & Janeric
+</p>
 
-          <div className="divider-romantic" />
+<div className="divider-romantic mt-2 mb-1" />
+  <div className="flex mt-1 justify-center">
+    <img
+      src="/sello.jpeg"
+      alt="Ruiz & Rivera"
+      className="
+        w-[100px]
+        md:w-[150px]
+        object-contain
+        opacity-95
+        animate-fade-up
+      "
+    />
+  </div>
 
-          <h1 className="font-display text-[4.5rem] leading-none text-vino md:text-[5.5rem]">
-            Ruiz
-          </h1>
-
-          <p className="mt-2 font-display text-2xl italic text-terracota">
-            &amp;
-          </p>
-
-          <h1 className="font-display text-[4.5rem] leading-none text-vino md:text-[5.5rem]">
-            Rivera
-          </h1>
-
-          <p className="mt-5 px-6 font-body text-sm leading-relaxed text-tinta/65">
-            Inicia sesión para acceder a los recuerdos,
-            fotografías y momentos especiales de nuestra celebración.
-          </p>
-        </div>
+  <p className="mt-5 px-6 font-body text-sm leading-relaxed text-tinta/">
+    Inicia sesión para acceder a los recuerdos,
+    fotografías y momentos especiales de nuestra celebración.
+  </p>
+</div>
 
         {/* Card */}
         <form
@@ -111,7 +143,7 @@ export function LoginPage() {
 
           <button
             type="submit"
-            className="btn-primary w-full"
+            className="btn-primary mx-auto"
             disabled={enviando}
           >
             {enviando ? 'Entrando…' : 'Entrar'}
@@ -129,7 +161,7 @@ export function LoginPage() {
             ¿Eres invitado y todavía no tienes cuenta?{' '}
             <Link
               to="/registro"
-              className="font-medium text-terracota transition hover:text-vino hover:underline"
+              className="font-medium text-black transition hover:text-vino hover:underline"
             >
               Registrate
             </Link>

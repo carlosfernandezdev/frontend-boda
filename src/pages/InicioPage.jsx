@@ -1,161 +1,183 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Loader2 } from 'lucide-react';
+
 import { useAuth } from '../context/AuthContext.jsx';
+import { archivosApi } from '../api/archivos.js';
 
 export function InicioPage() {
-  const { usuario, tienePermiso } = useAuth();
+  const { usuario } = useAuth();
 
-  return (
-    <div className="relative min-h-screen overflow-hidden px-4 py-12">
-      {/* Fondo Jane & Guille */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(216,191,168,0.38),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(111,30,52,0.15),transparent_38%),linear-gradient(180deg,#fffaf4_0%,#f7efe7_45%,#ead8c8_100%)]" />
+  const [archivos, setArchivos] = useState([]);
+  const [cargando, setCargando] = useState(true);
 
-      <div className="absolute left-[-120px] top-[-120px] h-[320px] w-[320px] rounded-full bg-vino/10 blur-3xl" />
-      <div className="absolute bottom-[-120px] right-[-120px] h-[320px] w-[320px] rounded-full bg-terracota/20 blur-3xl" />
+  useEffect(() => {
+    const cargar = async () => {
+      try {
+        const data = await archivosApi.listar({
+          page: 1,
+          limit: 24,
+        });
 
-      <div className="relative z-10 mx-auto max-w-5xl animate-fade-up">
-        {/* Encabezado */}
-        <div className="mb-12 text-center">
-          <p className="subtitle-romantic">
-            Bienvenido, {usuario?.nombre}
-          </p>
+        setArchivos(data.archivos || []);
+      } catch (error) {
+        setArchivos([]);
+      } finally {
+        setCargando(false);
+      }
+    };
 
-          <div className="divider-romantic" />
+    cargar();
+  }, []);
 
-          <h1 className="font-display text-[4.5rem] leading-none text-vino md:text-[6rem]">
-            La galería
-          </h1>
+  const esVideo = (archivo) => {
+    const url = archivo?.url?.toLowerCase() || '';
 
-          <p className="mx-auto mt-6 max-w-xl font-body text-sm leading-relaxed text-tinta/65 md:text-base">
-            Acá van a vivir todas las fotos y videos de la boda. Un espacio
-            especial para guardar, compartir y revivir los recuerdos más bonitos
-            de esta celebración.
-          </p>
-        </div>
+    return (
+      archivo.tipo === 'video' ||
+      url.endsWith('.mov') ||
+      url.endsWith('.mp4') ||
+      url.endsWith('.webm')
+    );
+  };
 
-        {/* Grid principal */}
-        <div className="grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
-          {/* Card principal */}
-          <section className="section-romantic p-8 md:p-10">
-            <p className="subtitle-romantic text-[11px]">
-              Recuerdos del gran día
+ return (
+  <div className="relative min-h-screen w-full overflow-hidden bg-[#f7f3eb] px-0 py-0">
+    {/* Fondo */}
+    <div className="absolute inset-0 z-0">
+      <img
+        src="/fondo1.jpeg"
+        alt=""
+        className="h-full w-full object-cover "
+      />
+
+      <div className="absolute inset-0 bg-white/65 " />
+    </div>
+
+    <div className="relative z-10 w-full animate-fade-up">
+
+
+  <div className="absolute inset-0 bg-[#f7f3eb]/80 backdrop-blur-[2px]" />
+
+    <div className="absolute inset-0 bg-[#f7f3eb]/90 backdrop-blur-[2px]" />
+  </div>
+      <div className="w-full animate-fade-up">
+        {/* HERO */}
+        <section className="relative w-full overflow-hidden bg-white shadow-suave">
+          <div className="relative h-[360px] overflow-hidden md:h-[520px] lg:h-[640px]">
+            <img
+              src="/novios.jpeg"
+              alt=""
+              className="h-full w-full object-cover object-top"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/20 to-white" />
+          </div>
+
+          <div className="relative -mt-24 px-6 pb-10 text-center md:-mt-32 md:px-10 lg:-mt-36">
+            <img
+              src="/sello.jpeg"
+              alt="Guillermo y Janeric"
+              className="mx-auto mb-5 w-[105px] object-contain drop-shadow-md md:w-[145px]"
+            />
+
+            <p className="subtitle-romantic mb-3 text-[11px] md:text-sm">
+              Guillermo & Janeric
             </p>
 
-            <h2 className="mt-3 font-display text-4xl leading-none text-vino md:text-5xl">
-              Comparte tus momentos favoritos
-            </h2>
+            <h1 className="font-body text-4xl font-bold tracking-tight text-black md:text-6xl">
+              Nuestra Galería
+            </h1>
 
-            <p className="mt-5 font-body text-sm leading-relaxed text-tinta/65">
-              Cada foto y cada video cuentan una parte de la historia. Desde los
-              abrazos espontáneos hasta los detalles de la celebración, este será
-              el lugar donde todos podrán dejar sus recuerdos.
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-black/60 md:text-lg">
+              Bienvenido, {usuario?.nombre}. Comparte y revive los recuerdos
+              más bonitos de nuestra celebración.
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-3xl border border-champagne/70 bg-white/35 p-5 backdrop-blur-sm">
-                <p className="font-display text-3xl text-vino">01</p>
-                <p className="mt-2 font-body text-sm text-tinta/65">
-                  Ver la galería completa.
-                </p>
-              </div>
+            {/* BOTONES */}
+            <div className="mx-auto mt-7 grid max-w-md grid-cols-2 gap-3">
+              <Link
+                to="/galeria"
+                className="rounded-xl bg-[#3f4438] px-4 py-3 text-center text-sm font-semibold text-white shadow-md transition hover:scale-[1.02]"
+              >
+                ↑ Subir fotos
+              </Link>
 
-              <div className="rounded-3xl border border-champagne/70 bg-white/35 p-5 backdrop-blur-sm">
-                <p className="font-display text-3xl text-vino">02</p>
-                <p className="mt-2 font-body text-sm text-tinta/65">
-                  Subir fotos y videos.
-                </p>
-              </div>
-
-              {tienePermiso('archivos.moderar') && (
-                <div className="rounded-3xl border border-champagne/70 bg-white/35 p-5 backdrop-blur-sm">
-                  <p className="font-display text-3xl text-vino">03</p>
-                  <p className="mt-2 font-body text-sm text-tinta/65">
-                    Moderar contenido publicado.
-                  </p>
-                </div>
-              )}
-
-              {tienePermiso('etapas.crear') && (
-                <div className="rounded-3xl border border-champagne/70 bg-white/35 p-5 backdrop-blur-sm">
-                  <p className="font-display text-3xl text-vino">04</p>
-                  <p className="mt-2 font-body text-sm text-tinta/65">
-                    Gestionar etapas del evento.
-                  </p>
-                </div>
-              )}
+              <Link
+                to="/galeria"
+                className="rounded-xl border border-black/15 bg-white px-4 py-3 text-center text-sm font-semibold text-black shadow-sm transition hover:scale-[1.02]"
+              >
+                ▶ Ver galería
+              </Link>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Tarjeta sesión */}
-          <aside className="section-romantic p-7 md:p-8">
-            <p className="subtitle-romantic text-[11px]">
-              Tu sesión
+        {/* CONTENIDO */}
+        <section className="w-full px-4 py-8 md:px-8 lg:px-12">
+          {/* INFO */}
+          <div className="mb-8 flex items-end justify-between">
+            <p className="text-sm text-black/60 md:text-base">
+              Fotos recientes
             </p>
 
-            <h2 className="mt-3 font-display text-3xl text-vino">
-              Acceso activo
-            </h2>
+            <Link
+              to="/galeria"
+              className="text-sm font-semibold text-black/70 md:text-base"
+            >
+              Ver todo
+            </Link>
+          </div>
 
-            <dl className="mt-6 space-y-4 font-body text-sm">
-              <div className="rounded-2xl border border-champagne/60 bg-white/35 px-4 py-3">
-                <dt className="text-xs uppercase tracking-[0.18em] text-tinta/40">
-                  Nombre
-                </dt>
-                <dd className="mt-1 font-medium text-tinta">
-                  {usuario?.nombre}
-                </dd>
-              </div>
-
-              <div className="rounded-2xl border border-champagne/60 bg-white/35 px-4 py-3">
-                <dt className="text-xs uppercase tracking-[0.18em] text-tinta/40">
-                  Correo
-                </dt>
-                <dd className="mt-1 break-words font-medium text-tinta">
-                  {usuario?.correo}
-                </dd>
-              </div>
-
-              <div className="rounded-2xl border border-champagne/60 bg-white/35 px-4 py-3">
-                <dt className="text-xs uppercase tracking-[0.18em] text-tinta/40">
-                  Rol
-                </dt>
-                <dd className="mt-1 font-medium text-terracota">
-                  {usuario?.rol_nombre}
-                </dd>
-              </div>
-            </dl>
-
-            <div className="mt-6 border-t border-champagne/60 pt-5">
-              <p className="mb-3 font-body text-xs uppercase tracking-[0.22em] text-tinta/40">
-                Permisos activos
+          {/* CARRUSEL */}
+          {cargando ? (
+            <div className="flex justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-black/40" />
+            </div>
+          ) : archivos.filter((a) => !esVideo(a)).length === 0 ? (
+            <div className="rounded-3xl bg-white/80 px-6 py-10 text-center shadow-sm">
+              <p className="text-sm text-black/55">
+                Todavía no hay fotos subidas.
               </p>
-
-              <div className="flex flex-wrap gap-2">
-                {usuario?.permisos?.length ? (
-                  usuario.permisos.map((p) => (
-                    <span
-                      key={p}
-                      className="rounded-full border border-champagne/70 bg-arena/60 px-3 py-1 font-body text-xs text-vino"
-                    >
-                      {p}
-                    </span>
-                  ))
-                ) : (
-                  <span className="font-body text-sm text-tinta/40">
-                    Sin permisos
-                  </span>
-                )}
-              </div>
             </div>
+          ) : (
+            <div className="flex gap-4 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-6">
+              {archivos
+                .filter((archivo) => !esVideo(archivo))
+                .map((archivo) => (
+                  <button
+                    key={archivo.id}
+                    type="button"
+                    className="shrink-0 overflow-hidden rounded-3xl bg-white shadow-sm transition hover:scale-[1.02]"
+                  >
+                    <img
+                      src={archivo.url}
+                      alt="Recuerdo"
+                      loading="lazy"
+                      decoding="async"
+                      className="
+                        h-[210px]
+                        w-[155px]
+                        object-cover
 
-            {tienePermiso('usuarios.asignar_rol') && (
-              <div className="mt-6 rounded-3xl border border-terracota/25 bg-terracota/10 p-4">
-                <p className="font-body text-sm leading-relaxed text-vino">
-                  También puedes administrar usuarios y roles dentro de la
-                  plataforma.
-                </p>
-              </div>
-            )}
-          </aside>
-        </div>
+                        md:h-[320px]
+                        md:w-[240px]
+
+                        lg:h-[420px]
+                        lg:w-[320px]
+                      "
+                    />
+
+                    <div className="px-4 py-3">
+                      <p className="text-xs text-[#cdbd9a] md:text-sm">
+                        {archivo.etapa_nombre || 'Recepción'}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+            </div>
+          )}
+        </section>
       </div>
     </div>
   );

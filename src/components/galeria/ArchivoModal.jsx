@@ -121,23 +121,29 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
 
         {/* Panel de info */}
         <div className="w-full overflow-y-auto p-6 md:w-80">
-          <div className="mb-4 flex items-start justify-between">
-            <h3 className="font-display text-2xl text-vino">Detalle</h3>
-            <button
-              onClick={cerrar}
-              className="rounded-full p-1.5 text-tinta/50 transition hover:bg-arena hover:text-vino"
-            >
-              <X className="h-5 w-5" />
-            </button>
+          <div className="mb-6 flex justify-end">
+  <button
+    onClick={cerrar}
+    className="
+      flex h-11 w-11 items-center justify-center
+      rounded-full
+      bg-white/70
+      shadow-sm
+      backdrop-blur-md
+      text-tinta/55
+      transition
+      hover:scale-105
+      hover:bg-white
+      hover:text-vino
+    "
+  >
+    <X className="h-5 w-5" />
+  </button>
           </div>
 
           <dl className="space-y-3 font-body text-sm">
             <Info icon={User} label="Subido por" valor={archivo.usuario_nombre} />
-            <Info
-              icon={Calendar}
-              label="Tomada"
-              valor={archivo.tomada_en ? formatFecha(archivo.tomada_en) : 'Sin fecha'}
-            />
+            
             <Info icon={Clock} label="Subida" valor={formatFecha(archivo.created_at)} />
             {meta.camara && <Info icon={Camera} label="Cámara" valor={meta.camara} />}
             {meta.gps && (
@@ -159,36 +165,28 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
           </dl>
 
           {/* Descargar */}
-          <button
-            onClick={descargar}
-            disabled={descargando}
-            className="btn-primary mt-6 w-full"
-          >
+          <div className="mt-7 flex justify-center">
+  <button
+    onClick={descargar}
+    disabled={descargando}
+    className="
+      flex items-center justify-center gap-2
+      rounded-full
+      bg-[#3f4438]
+      px-7 py-3
+      text-sm font-semibold text-white
+      shadow-lg
+      transition
+      hover:scale-[1.02]
+      hover:bg-[#2f3428]
+    "
+  >
             <Download className="h-4 w-4" />
             {descargando ? 'Descargando…' : 'Descargar'}
           </button>
+          </div>
 
-          {/* Reasignar etapa — se guarda sola al cerrar */}
-          {puedeEditar && (
-            <div className="mt-6 border-t border-champagne/60 pt-4">
-              <label className="label-base">Etapa</label>
-              <select
-                value={etapaSel}
-                onChange={(e) => setEtapaSel(e.target.value)}
-                className="w-full rounded-lg border border-champagne bg-white/60 px-3 py-2 font-body text-sm outline-none focus:border-terracota"
-              >
-                <option value="">Sin etapa</option>
-                {etapas.map((et) => (
-                  <option key={et.id} value={et.id}>
-                    {et.nombre}
-                  </option>
-                ))}
-              </select>
-              <p className="mt-2 font-body text-xs text-tinta/40">
-                Los cambios se guardan al cerrar.
-              </p>
-            </div>
-          )}
+          
         </div>
       </div>
     </div>,
