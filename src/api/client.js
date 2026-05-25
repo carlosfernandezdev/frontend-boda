@@ -11,7 +11,7 @@ export const tokenStore = {
 // Cliente base. baseURL '/api' funciona con el proxy de Vite en dev
 // y con un reverse-proxy o mismo dominio en producción.
 export const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'https://backend-boda-production-4457.up.railway.app/api',
 });
 
 // Request interceptor: adjunta el Bearer token si existe.
