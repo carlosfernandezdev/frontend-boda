@@ -38,7 +38,7 @@ export function LoginPage() {
   {/* Imagen */}
   <div className="absolute inset-0 overflow-hidden">
    <img
-  src="/estancia.jpeg"
+  src="/estancia.webp"
   alt=""
   className="
     h-full
@@ -79,7 +79,7 @@ export function LoginPage() {
 <div className="divider-romantic mt-2 mb-1" />
   <div className="flex mt-1 justify-center">
     <img
-      src="/sello.jpeg"
+      src="/sello.webp"
       alt="Ruiz & Rivera"
       className="
         w-[100px]

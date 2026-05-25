@@ -46,7 +46,7 @@ export function InicioPage() {
     {/* Fondo */}
     <div className="absolute inset-0 z-0">
       <img
-        src="/fondo1.jpeg"
+        src="/fondo1.webp"
         alt=""
         className="h-full w-full object-cover "
       />
@@ -66,7 +66,7 @@ export function InicioPage() {
         <section className="relative w-full overflow-hidden bg-white shadow-suave">
           <div className="relative h-[360px] overflow-hidden md:h-[520px] lg:h-[640px]">
             <img
-              src="/novios.jpeg"
+              src="/novios.webp"
               alt=""
               className="h-full w-full object-cover object-top"
             />
@@ -76,7 +76,7 @@ export function InicioPage() {
 
           <div className="relative -mt-24 px-6 pb-10 text-center md:-mt-32 md:px-10 lg:-mt-36">
             <img
-              src="/sello.jpeg"
+              src="/sello.webp"
               alt="Guillermo y Janeric"
               className="mx-auto mb-5 w-[105px] object-contain drop-shadow-md md:w-[145px]"
             />
