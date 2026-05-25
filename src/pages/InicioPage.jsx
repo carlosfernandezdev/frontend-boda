@@ -16,7 +16,7 @@ export function InicioPage() {
       try {
         const data = await archivosApi.listar({
           page: 1,
-          limit: 24,
+          limit: 50,
         });
 
         setArchivos(data.archivos || []);
@@ -134,7 +134,7 @@ export function InicioPage() {
             <div className="flex justify-center py-12">
               <Loader2 className="h-8 w-8 animate-spin text-black/40" />
             </div>
-          ) : archivos.filter((a) => !esVideo(a)).length === 0 ? (
+          ) : archivos.filter((a) => !esVideo(a)).length === 20 ? (
             <div className="rounded-3xl bg-white/80 px-6 py-10 text-center shadow-sm">
               <p className="text-sm text-black/55">
                 Todavía no hay fotos subidas.
