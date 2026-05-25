@@ -95,32 +95,30 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-tinta/70 p-4 backdrop-blur-sm"
-      onClick={cerrar}
+className="fixed inset-0 z-50 flex items-center justify-center bg-tinta/70 p-3 backdrop-blur-sm md:p-4"      onClick={cerrar}
     >
       <div
-        className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-crema shadow-2xl md:flex-row"
-        onClick={(e) => e.stopPropagation()}
+className="flex w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-crema shadow-2xl md:max-h-[90vh] md:flex-row"        onClick={(e) => e.stopPropagation()}
       >
         {/* Media */}
-        <div className="flex flex-1 items-center justify-center bg-tinta/95 p-2">
+        <div className="flex items-center justify-center bg-tinta/95">
           {archivo.tipo === 'imagen' ? (
             <img
               src={archivo.url}
-              className="max-h-[80vh] w-auto object-contain"
+              className="h-auto max-h-[65vh] w-full object-contain md:max-h-[80vh]"
             />
           ) : (
             <video
               src={archivo.url}
               controls
               autoPlay
-              className="max-h-[80vh] w-full"
+              className="h-auto max-h-[65vh] w-full object-contain md:max-h-[80vh]"
             />
           )}
         </div>
 
         {/* Panel de info */}
-        <div className="w-full overflow-y-auto p-6 md:w-80">
+        <div className="w-full p-5 md:w-80 md:overflow-y-auto md:p-6">
           <div className="mb-6 flex justify-end">
   <button
     onClick={cerrar}
@@ -141,7 +139,7 @@ export function ArchivoModal({ archivo, etapas, onCerrar, onReasignarEtapa }) {
   </button>
           </div>
 
-          <dl className="space-y-3 font-body text-sm">
+          <dl className="min-h-0 flex-1 space-y-3 overflow-y-auto pr-1 font-body text-sm">
             <Info icon={User} label="Subido por" valor={archivo.usuario_nombre} />
             
             <Info icon={Clock} label="Subida" valor={formatFecha(archivo.created_at)} />
