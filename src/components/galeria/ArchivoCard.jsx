@@ -31,8 +31,21 @@ export function ArchivoCard({ archivo, onAbrir, onEliminar, onToggleVisible }) {
           />
         ) : (
           <div className="relative h-full w-full bg-[#e8e2d7]">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#f7f3eb] to-[#cdbd9a]/40" />
+            {archivo.thumbnail_url ? (
+              // Póster real extraído del video
+              <img
+                src={archivo.thumbnail_url}
+                alt={archivo.nombre || 'Video'}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+              />
+            ) : (
+              // Fallback si el video aún no tiene thumbnail
+              <div className="absolute inset-0 bg-gradient-to-br from-[#f7f3eb] to-[#cdbd9a]/40" />
+            )}
 
+            {/* Botón de play siempre encima */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg">
                 <Play

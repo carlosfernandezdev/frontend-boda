@@ -110,6 +110,7 @@ className="flex w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-crema s
           ) : (
             <video
               src={archivo.url}
+              poster={archivo.thumbnail_url || undefined}
               controls
               autoPlay
               className="h-auto max-h-[65vh] w-full object-contain md:max-h-[80vh]"
