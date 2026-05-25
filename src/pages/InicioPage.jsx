@@ -90,7 +90,7 @@ export function InicioPage() {
             </h1>
 
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-black/60 md:text-lg">
-              Bienvenido, {usuario?.nombre}. Comparte y revive los recuerdos
+              Bienvenid@, {usuario?.nombre}. Comparte y revive los recuerdos
               más bonitos de nuestra celebración.
             </p>
 
@@ -107,7 +107,7 @@ export function InicioPage() {
                 to="/galeria"
                 className="rounded-xl border border-black/15 bg-white px-4 py-3 text-center text-sm font-semibold text-black shadow-sm transition hover:scale-[1.02]"
               >
-                ▶ Ver galería
+                Ver galería
               </Link>
             </div>
           </div>

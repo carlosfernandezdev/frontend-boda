@@ -205,12 +205,12 @@ const archivosOrdenados = [...archivos].sort((a, b) => {
               Guillermo & Janeric
             </p>
 
-            <h1 className="font-body text-4xl font-bold tracking-tight text- md:text-6xl">
+            <h1 className="font-body text-4xl font-bold tracking-tight text-black/70 md:text-6xl">
               Nuestra Galería
             </h1>
 
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-black/65 md:text-lg">
-              Bienvenido, {usuario?.nombre}. Comparte y revive los recuerdos
+              Bienvenid@, {usuario?.nombre}. Comparte y revive los recuerdos
               más bonitos de nuestra celebración.
             </p>
 
