@@ -16,7 +16,7 @@ export function InicioPage() {
       try {
         const data = await archivosApi.listar({
           page: 1,
-          limit: 50,
+          limit: 80,
         });
 
         setArchivos(data.archivos || []);
