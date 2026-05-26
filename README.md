@@ -56,7 +56,7 @@ El helper `tienePermiso('archivos.moderar')` decide qué se muestra. Ejemplos:
 
 ## Próximos pasos
 
-- [ ] Galería de archivos con filtros (tipo / usuario / etapa)
+- [-] Galería de archivos con filtros (tipo / usuario / etapa)
 - [ ] Componente de upload con drag & drop
 - [ ] Vista de detalle de archivo
 - [ ] Panel de moderación (novios)
